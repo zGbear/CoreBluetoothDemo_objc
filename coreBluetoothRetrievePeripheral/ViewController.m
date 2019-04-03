@@ -61,15 +61,15 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     _outputTextView.text = [_outputTextView.text stringByAppendingString:@"didDiscoverServices!\n"];
-    _selectedPeripheral = peripheral;
-    _selectedPeripheral.delegate = self;
+//    _selectedPeripheral = peripheral;
+//    _selectedPeripheral.delegate = self;
     [_selectedPeripheral discoverCharacteristics:@[[CBUUID UUIDWithString:CDDeviceCodoonSportWatchCharacteristicUUID]] forService:peripheral.services.firstObject];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(nonnull CBService *)service error:(nullable NSError *)error {
     _outputTextView.text = [_outputTextView.text stringByAppendingString:@"didDiscoverCharacteristicsForService!\n"];
-    _selectedPeripheral = peripheral;
-    _selectedPeripheral.delegate = self;
+//    _selectedPeripheral = peripheral;
+//    _selectedPeripheral.delegate = self;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
