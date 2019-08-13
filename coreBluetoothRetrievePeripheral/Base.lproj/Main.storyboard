@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SnD-FQ-mz6">
-                                <rect key="frame" x="0.0" y="65" width="375" height="282"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="302"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="uRL-pH-wjX">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uRL-pH-wjX" id="6tH-tk-4yQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -78,11 +77,20 @@
                                             <action selector="stopHeartRate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HAH-ie-hxe"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4V-vc-696">
+                                        <rect key="frame" x="264.5" y="48" width="30" height="30"/>
+                                        <state key="normal" title="OTA"/>
+                                        <connections>
+                                            <action selector="OTAButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgV-2G-oNm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gpE-Ev-Slg" firstAttribute="top" secondItem="0L8-Nw-zhv" secondAttribute="bottom" constant="10" id="1F2-aM-p7a"/>
                                     <constraint firstItem="6x6-XU-7OW" firstAttribute="leading" secondItem="0L8-Nw-zhv" secondAttribute="trailing" constant="50" id="5a5-2H-Tvg"/>
+                                    <constraint firstItem="h4V-vc-696" firstAttribute="centerY" secondItem="gpE-Ev-Slg" secondAttribute="centerY" id="Btf-ex-3CE"/>
+                                    <constraint firstItem="h4V-vc-696" firstAttribute="centerX" secondItem="fj9-Fc-YmA" secondAttribute="centerX" id="JrC-q8-cPQ"/>
                                     <constraint firstItem="gpE-Ev-Slg" firstAttribute="centerX" secondItem="0L8-Nw-zhv" secondAttribute="centerX" id="KF7-m1-AGG"/>
                                     <constraint firstItem="fj9-Fc-YmA" firstAttribute="leading" secondItem="6x6-XU-7OW" secondAttribute="trailing" constant="50" id="Rko-lf-mqS"/>
                                     <constraint firstItem="V5u-Lw-fb0" firstAttribute="top" secondItem="gpE-Ev-Slg" secondAttribute="bottom" constant="4" id="bFj-IS-wpN"/>

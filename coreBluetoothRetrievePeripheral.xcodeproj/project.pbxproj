@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27AA1177A13D5A8F5F05D976 /* libPods-coreBluetoothRetrievePeripheral.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE3C73AD3C960B4BEBF118 /* libPods-coreBluetoothRetrievePeripheral.a */; };
+		2DD29EC423025C8900822940 /* GD01.bin in Resources */ = {isa = PBXBuildFile; fileRef = 2DD29EC323025C8900822940 /* GD01.bin */; };
+		2DE5A8852300F2AB00F25FB3 /* CDBLECentralSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5A8842300F2AB00F25FB3 /* CDBLECentralSource.m */; };
+		2DE5A8882301373A00F25FB3 /* ota.bin in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5A8872301373A00F25FB3 /* ota.bin */; };
 		2DE6080121AE4CD500214B83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6080021AE4CD500214B83 /* AppDelegate.m */; };
 		2DE6080421AE4CD500214B83 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6080321AE4CD500214B83 /* ViewController.m */; };
 		2DE6080721AE4CD500214B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE6080521AE4CD500214B83 /* Main.storyboard */; };
@@ -15,6 +19,8 @@
 		2DE6080F21AE4CD700214B83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6080E21AE4CD700214B83 /* main.m */; };
 		2DE6081921AE4CD700214B83 /* coreBluetoothRetrievePeripheralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6081821AE4CD700214B83 /* coreBluetoothRetrievePeripheralTests.m */; };
 		2DE6082421AE4CD700214B83 /* coreBluetoothRetrievePeripheralUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6082321AE4CD700214B83 /* coreBluetoothRetrievePeripheralUITests.m */; };
+		332090C3AEAD25BA216B2523 /* libPods-coreBluetoothRetrievePeripheralTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C63388CC1E5A83772577F23 /* libPods-coreBluetoothRetrievePeripheralTests.a */; };
+		C4EE6853098520EDA2D45B8B /* libPods-coreBluetoothRetrievePeripheralUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A2DDBAB8FADFAC964A21FE /* libPods-coreBluetoothRetrievePeripheralUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19169AA780506D32937EC870 /* Pods-coreBluetoothRetrievePeripheral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheral/Pods-coreBluetoothRetrievePeripheral.debug.xcconfig"; sourceTree = "<group>"; };
+		2DD29EC323025C8900822940 /* GD01.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = GD01.bin; sourceTree = "<group>"; };
+		2DE5A8832300F2AA00F25FB3 /* CDBLECentralSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDBLECentralSource.h; sourceTree = "<group>"; };
+		2DE5A8842300F2AB00F25FB3 /* CDBLECentralSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDBLECentralSource.m; sourceTree = "<group>"; };
+		2DE5A8872301373A00F25FB3 /* ota.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = ota.bin; sourceTree = "<group>"; };
 		2DE607FC21AE4CD500214B83 /* coreBluetoothRetrievePeripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coreBluetoothRetrievePeripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE607FF21AE4CD500214B83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2DE6080021AE4CD500214B83 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +62,14 @@
 		2DE6081F21AE4CD700214B83 /* coreBluetoothRetrievePeripheralUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = coreBluetoothRetrievePeripheralUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE6082321AE4CD700214B83 /* coreBluetoothRetrievePeripheralUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = coreBluetoothRetrievePeripheralUITests.m; sourceTree = "<group>"; };
 		2DE6082521AE4CD700214B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5917AB822D9E42AEA01C6585 /* Pods-coreBluetoothRetrievePeripheralTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheralTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheralTests/Pods-coreBluetoothRetrievePeripheralTests.release.xcconfig"; sourceTree = "<group>"; };
+		66545D562E9E77BCADE20148 /* Pods-coreBluetoothRetrievePeripheralUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheralUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheralUITests/Pods-coreBluetoothRetrievePeripheralUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8B053CFC2934F4CA159C9498 /* Pods-coreBluetoothRetrievePeripheralUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheralUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheralUITests/Pods-coreBluetoothRetrievePeripheralUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C63388CC1E5A83772577F23 /* libPods-coreBluetoothRetrievePeripheralTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-coreBluetoothRetrievePeripheralTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		90CE3C73AD3C960B4BEBF118 /* libPods-coreBluetoothRetrievePeripheral.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-coreBluetoothRetrievePeripheral.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B74E0DAC7BE84897B08E8AD1 /* Pods-coreBluetoothRetrievePeripheral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheral.release.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheral/Pods-coreBluetoothRetrievePeripheral.release.xcconfig"; sourceTree = "<group>"; };
+		D2A2DDBAB8FADFAC964A21FE /* libPods-coreBluetoothRetrievePeripheralUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-coreBluetoothRetrievePeripheralUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5A751450B1FCFCADEAB1A75 /* Pods-coreBluetoothRetrievePeripheralTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreBluetoothRetrievePeripheralTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coreBluetoothRetrievePeripheralTests/Pods-coreBluetoothRetrievePeripheralTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27AA1177A13D5A8F5F05D976 /* libPods-coreBluetoothRetrievePeripheral.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332090C3AEAD25BA216B2523 /* libPods-coreBluetoothRetrievePeripheralTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +93,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EE6853098520EDA2D45B8B /* libPods-coreBluetoothRetrievePeripheralUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15E6393D1F3DF789347E423B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90CE3C73AD3C960B4BEBF118 /* libPods-coreBluetoothRetrievePeripheral.a */,
+				8C63388CC1E5A83772577F23 /* libPods-coreBluetoothRetrievePeripheralTests.a */,
+				D2A2DDBAB8FADFAC964A21FE /* libPods-coreBluetoothRetrievePeripheralUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2DE5A8862301372900F25FB3 /* BootFile */ = {
+			isa = PBXGroup;
+			children = (
+				2DD29EC323025C8900822940 /* GD01.bin */,
+				2DE5A8872301373A00F25FB3 /* ota.bin */,
+			);
+			path = BootFile;
+			sourceTree = "<group>";
+		};
 		2DE607F321AE4CD500214B83 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +126,8 @@
 				2DE6081721AE4CD700214B83 /* coreBluetoothRetrievePeripheralTests */,
 				2DE6082221AE4CD700214B83 /* coreBluetoothRetrievePeripheralUITests */,
 				2DE607FD21AE4CD500214B83 /* Products */,
+				923DFC164358326EBBD10800 /* Pods */,
+				15E6393D1F3DF789347E423B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +144,13 @@
 		2DE607FE21AE4CD500214B83 /* coreBluetoothRetrievePeripheral */ = {
 			isa = PBXGroup;
 			children = (
+				2DE5A8862301372900F25FB3 /* BootFile */,
 				2DE607FF21AE4CD500214B83 /* AppDelegate.h */,
 				2DE6080021AE4CD500214B83 /* AppDelegate.m */,
 				2DE6080221AE4CD500214B83 /* ViewController.h */,
 				2DE6080321AE4CD500214B83 /* ViewController.m */,
+				2DE5A8832300F2AA00F25FB3 /* CDBLECentralSource.h */,
+				2DE5A8842300F2AB00F25FB3 /* CDBLECentralSource.m */,
 				2DE6080521AE4CD500214B83 /* Main.storyboard */,
 				2DE6080821AE4CD700214B83 /* Assets.xcassets */,
 				2DE6080A21AE4CD700214B83 /* LaunchScreen.storyboard */,
@@ -132,6 +178,19 @@
 			path = coreBluetoothRetrievePeripheralUITests;
 			sourceTree = "<group>";
 		};
+		923DFC164358326EBBD10800 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19169AA780506D32937EC870 /* Pods-coreBluetoothRetrievePeripheral.debug.xcconfig */,
+				B74E0DAC7BE84897B08E8AD1 /* Pods-coreBluetoothRetrievePeripheral.release.xcconfig */,
+				E5A751450B1FCFCADEAB1A75 /* Pods-coreBluetoothRetrievePeripheralTests.debug.xcconfig */,
+				5917AB822D9E42AEA01C6585 /* Pods-coreBluetoothRetrievePeripheralTests.release.xcconfig */,
+				8B053CFC2934F4CA159C9498 /* Pods-coreBluetoothRetrievePeripheralUITests.debug.xcconfig */,
+				66545D562E9E77BCADE20148 /* Pods-coreBluetoothRetrievePeripheralUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +198,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DE6082821AE4CD700214B83 /* Build configuration list for PBXNativeTarget "coreBluetoothRetrievePeripheral" */;
 			buildPhases = (
+				9F55CAE5973CAAE18025CF4A /* [CP] Check Pods Manifest.lock */,
 				2DE607F821AE4CD500214B83 /* Sources */,
 				2DE607F921AE4CD500214B83 /* Frameworks */,
 				2DE607FA21AE4CD500214B83 /* Resources */,
@@ -156,6 +216,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DE6082B21AE4CD700214B83 /* Build configuration list for PBXNativeTarget "coreBluetoothRetrievePeripheralTests" */;
 			buildPhases = (
+				865A7D410322708733667B1C /* [CP] Check Pods Manifest.lock */,
 				2DE6081021AE4CD700214B83 /* Sources */,
 				2DE6081121AE4CD700214B83 /* Frameworks */,
 				2DE6081221AE4CD700214B83 /* Resources */,
@@ -174,6 +235,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DE6082E21AE4CD700214B83 /* Build configuration list for PBXNativeTarget "coreBluetoothRetrievePeripheralUITests" */;
 			buildPhases = (
+				BCE405CEA4058883186A1A71 /* [CP] Check Pods Manifest.lock */,
 				2DE6081B21AE4CD700214B83 /* Sources */,
 				2DE6081C21AE4CD700214B83 /* Frameworks */,
 				2DE6081D21AE4CD700214B83 /* Resources */,
@@ -237,7 +299,9 @@
 			files = (
 				2DE6080C21AE4CD700214B83 /* LaunchScreen.storyboard in Resources */,
 				2DE6080921AE4CD700214B83 /* Assets.xcassets in Resources */,
+				2DE5A8882301373A00F25FB3 /* ota.bin in Resources */,
 				2DE6080721AE4CD500214B83 /* Main.storyboard in Resources */,
+				2DD29EC423025C8900822940 /* GD01.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +321,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		865A7D410322708733667B1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-coreBluetoothRetrievePeripheralTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F55CAE5973CAAE18025CF4A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-coreBluetoothRetrievePeripheral-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCE405CEA4058883186A1A71 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-coreBluetoothRetrievePeripheralUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2DE607F821AE4CD500214B83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,6 +386,7 @@
 				2DE6080421AE4CD500214B83 /* ViewController.m in Sources */,
 				2DE6080F21AE4CD700214B83 /* main.m in Sources */,
 				2DE6080121AE4CD500214B83 /* AppDelegate.m in Sources */,
+				2DE5A8852300F2AB00F25FB3 /* CDBLECentralSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +555,7 @@
 		};
 		2DE6082921AE4CD700214B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19169AA780506D32937EC870 /* Pods-coreBluetoothRetrievePeripheral.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,6 +574,7 @@
 		};
 		2DE6082A21AE4CD700214B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B74E0DAC7BE84897B08E8AD1 /* Pods-coreBluetoothRetrievePeripheral.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,6 +593,7 @@
 		};
 		2DE6082C21AE4CD700214B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5A751450B1FCFCADEAB1A75 /* Pods-coreBluetoothRetrievePeripheralTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -488,6 +613,7 @@
 		};
 		2DE6082D21AE4CD700214B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5917AB822D9E42AEA01C6585 /* Pods-coreBluetoothRetrievePeripheralTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +633,7 @@
 		};
 		2DE6082F21AE4CD700214B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B053CFC2934F4CA159C9498 /* Pods-coreBluetoothRetrievePeripheralUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2328CN2XE;
@@ -525,6 +652,7 @@
 		};
 		2DE6083021AE4CD700214B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66545D562E9E77BCADE20148 /* Pods-coreBluetoothRetrievePeripheralUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2328CN2XE;

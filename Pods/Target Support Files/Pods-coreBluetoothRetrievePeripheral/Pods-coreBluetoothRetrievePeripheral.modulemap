@@ -1,0 +1,6 @@
+module Pods_coreBluetoothRetrievePeripheral {
+  umbrella header "Pods-coreBluetoothRetrievePeripheral-umbrella.h"
+
+  export *
+  module * { export * }
+}

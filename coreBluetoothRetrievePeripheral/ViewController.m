@@ -8,9 +8,16 @@
 
 #import "ViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "CDBLECentralSource.h"
 
 NSString * const CDDeviceCodoonSportWatchCharacteristicUUID = @"2A19";
 NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
+
+typedef struct {
+    uint16_t frameLength;
+    uint8_t frameCountEveryGroup;
+    uint8_t timeoutInterval;
+}fileTransferParameter;
 
 @interface ViewController () <CBCentralManagerDelegate, CBPeripheralDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -19,8 +26,13 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) NSMutableDictionary <NSString *, CBPeripheral *> *scanPeripheralResult;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *advertisementDataSource;
 @property (nonatomic, strong) NSUUID *Identity;
 @property (nonatomic, strong) CBPeripheral *selectedPeripheral;
+
+@property (nonatomic, strong) NSData *OTASourceFile;
+@property (nonatomic, assign) fileTransferParameter OTAParameters;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -38,8 +50,19 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 #pragma mark - CBPeripheralDelegate
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    
+    if (![[advertisementData objectForKey:CBAdvertisementDataLocalNameKey] isEqualToString:@"COD_WATCH_X3"]) {
+        return;
+    }
     [self.dataSource addObject:peripheral];
+    NSData *macData = [advertisementData objectForKey:CBAdvertisementDataManufacturerDataKey];
+    if (!macData) {
+        [self.advertisementDataSource addObject:@""];
+    } else {
+        Byte *bytes = (Byte *)[macData bytes];
+        NSString *productId = [NSString stringWithFormat:@" %d-%d-%d-%d-%d-%d-%d-%d", bytes[0], (bytes[1]<<8) + bytes[2], (bytes[3]<<8) + bytes[4], (bytes[5]<<8) + bytes[6], bytes[7], (bytes[8] << 8) + bytes[9], (bytes[10]<<8) + bytes[11], bytes[12]];
+        [self.advertisementDataSource addObject:productId];
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.peripheralTableView reloadData];
     });
@@ -62,7 +85,7 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     _outputTextView.text = [_outputTextView.text stringByAppendingString:@"didDiscoverServices!\n"];
 //    _selectedPeripheral = peripheral;
-//    _selectedPeripheral.delegate = self;
+//    _selectedPeripheral.dele gate = self;
     [_selectedPeripheral discoverCharacteristics:@[[CBUUID UUIDWithString:CDDeviceCodoonSportWatchCharacteristicUUID]] forService:peripheral.services.firstObject];
 }
 
@@ -70,6 +93,15 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     _outputTextView.text = [_outputTextView.text stringByAppendingString:@"didDiscoverCharacteristicsForService!\n"];
 //    _selectedPeripheral = peripheral;
 //    _selectedPeripheral.delegate = self;
+    CBCharacteristic *writeCharacteristic = [self characteristicForUUIDString:CDDeviceCodoonSportWatchCharacteristicUUID];
+    CBCharacteristic *responseCharacteristic = [self characteristicForUUIDString:CDDeviceCodoonSportWatchResponseCharacteristicUUID];
+    
+    if (!writeCharacteristic || !responseCharacteristic) {
+        NSLog(@"Characteristic illegal");
+        return;
+    }
+    
+    [_selectedPeripheral setNotifyValue:YES forCharacteristic:responseCharacteristic];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
@@ -87,6 +119,15 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     NSLog(@"%@", characteristic.value);
     _outputTextView.text = [_outputTextView.text stringByAppendingString:[NSString stringWithFormat:@"responseData:%@\n", characteristic.value]];
     
+    [self preferredFilterUpdateValue:characteristic.value];
+}
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    NSLog(@"centralManagerDidDisconnectPeripheral!");
+}
+
+- (void)peripheralIsReadyToSendWriteWithoutResponse:(CBPeripheral *)peripheral {
+    NSLog(@"peripheralIsReadyToSendWriteWithoutResponse");
 }
 
 #pragma mark - UITableViewDelegate
@@ -94,6 +135,18 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CBPeripheral *selectedPeripheral = _dataSource[indexPath.row];
     [_centralManager connectPeripheral:selectedPeripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey : @(YES)}];
+    [_centralManager stopScan];
+}
+
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    void(^OTAActionDeleteHandler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+    };
+    
+    UITableViewRowAction *actionOTA = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"OTA" handler:OTAActionDeleteHandler];
+    actionOTA.backgroundColor = [UIColor colorWithRed:204.f/255.f green:204.f/255.f blue:204.f/255.f alpha:1.0];
+
+    return @[actionOTA];
 }
 
 #pragma mark - UITableViewDataSource
@@ -107,7 +160,7 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 30.f;
+    return 45.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,15 +168,14 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     
     CBPeripheral *selectedPeripheral = _dataSource[indexPath.row];
     
-    cell.textLabel.text = selectedPeripheral.name;
-    
+    cell.textLabel.text = [selectedPeripheral.name stringByAppendingString:_advertisementDataSource[indexPath.row]];
     return cell;
 }
 
 #pragma mark - handle event
 
 - (IBAction)scan:(id)sender {
-    [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:@"FE95"]] options:nil];
+    [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:@"0AF0"]] options:nil];
 }
 
 - (IBAction)retrieve:(id)sender {
@@ -155,6 +207,17 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     [self codoonSportWatchStopSyncHeartRateData];
 }
 
+- (IBAction)OTAButtonDidClick:(UIButton *)sender {
+    if (!_selectedPeripheral) {
+        return;
+    }
+    _index = 0;
+    NSString *fileName = @"GD01";
+    NSData *bootData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:fileName withExtension:@"bin"]];
+    _OTASourceFile = bootData;
+    [self codoonSportWatchStartOTA];
+}
+
 #pragma mark - private method
 
 - (void)codoonSportWatchSyncHeartRateData {
@@ -183,8 +246,84 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     [self writeValue:data];
 }
 
-- (void)writeValue:(NSData *)value {
+#pragma mark - OTA
+
+- (void)codoonSportWatchStartOTA {
+    uint16_t singleFrameByteCount = 155;
+    uint32_t binDataLength = (uint32_t)_OTASourceFile.length;
+    uint8_t dataCategory = 0;
     
+    NSMutableData *parameters = [NSMutableData data];
+    [parameters appendBytes:[CDBLECentralSource convertNSIntegerDataToBytes:singleFrameByteCount bytesLength:2] length:2];
+    [parameters appendBytes:[CDBLECentralSource convertNSIntegerDataToBytes:binDataLength bytesLength:4] length:4];
+    [parameters appendBytes:&dataCategory length:1];
+    NSData *data = [self commandDataWithMainCode:0x0a subCode:0x01 parameters:parameters];
+    [self writeValue:data];
+}
+
+
+- (void)sendNext {
+    uint32_t groupDataLength = self.OTAParameters.frameLength * self.OTAParameters.frameCountEveryGroup;
+    NSInteger totalTurm = _OTASourceFile.length / groupDataLength;
+    if (_index < totalTurm) {
+        [self sendFile:[_OTASourceFile subdataWithRange:NSMakeRange(_index * groupDataLength, groupDataLength)]];
+    } else if (_index == totalTurm) {
+        [self sendFile:[_OTASourceFile subdataWithRange:NSMakeRange(_index * groupDataLength, _OTASourceFile.length - _index * groupDataLength)]];
+    } else {
+        [self sendTotalFileCRC];
+    }
+}
+
+- (void)sendFile:(NSData *)groupFile {
+    _index++;
+    if (groupFile.length <= 0) {
+        return;
+    }
+    uint8_t groupIndex = 0;
+    while (groupIndex < self.OTAParameters.frameCountEveryGroup) {
+        if (!self.selectedPeripheral.canSendWriteWithoutResponse) {
+//            NSLog(@"==================等待");
+//            [NSThread sleepForTimeInterval:0.5];
+//            continue;
+        }
+        NSInteger subLength = MIN(self.OTAParameters.frameLength, (groupFile.length - groupIndex * self.OTAParameters.frameLength));
+        NSData *sendData = [groupFile subdataWithRange:NSMakeRange(self.OTAParameters.frameLength * groupIndex, subLength)];
+        NSMutableData *commandData = [NSMutableData data];
+        UInt8 head = 0xAB;
+        [commandData appendBytes:&head length:1];
+        [commandData appendBytes:&groupIndex length:1];
+        [commandData appendData:sendData];
+        [self writeValue:commandData];
+        if (subLength < self.OTAParameters.frameLength) {
+            break;
+        }
+        groupIndex++;
+    }
+    uint32_t groupCrc = [CDBLECentralSource CRC32ValueByXCYDecoding:groupFile];
+    uint8_t dataCategory = 0x00;
+    
+    NSMutableData *parameters = [NSMutableData data];
+    [parameters appendBytes:[CDBLECentralSource convertNSIntegerDataToBytes:groupCrc bytesLength:4] length:4];
+    [parameters appendBytes:&dataCategory length:1];
+    NSData *data = [self commandDataWithMainCode:0x0a subCode:0x02 parameters:parameters];
+    [self writeValue:data];
+}
+
+- (void)sendTotalFileCRC {
+    uint32_t fileCRC = [CDBLECentralSource CRC32ValueByXCYDecoding:_OTASourceFile];
+    uint8_t dataCategory = 0x00;
+    
+    NSMutableData *parameters = [NSMutableData data];
+    [parameters appendBytes:[CDBLECentralSource convertNSIntegerDataToBytes:fileCRC bytesLength:4] length:4];
+    [parameters appendBytes:&dataCategory length:1];
+    NSData *data = [self commandDataWithMainCode:0x0a subCode:0x03 parameters:parameters];
+    [self writeValue:data];
+}
+
+#pragma mark -
+
+- (void)writeValue:(NSData *)value {
+    NSLog(@"%@", value);
     CBCharacteristic *writeCharacteristic = [self characteristicForUUIDString:CDDeviceCodoonSportWatchCharacteristicUUID];
     CBCharacteristic *responseCharacteristic = [self characteristicForUUIDString:CDDeviceCodoonSportWatchResponseCharacteristicUUID];
     
@@ -192,8 +331,6 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
         NSLog(@"Characteristic illegal");
         return;
     }
-    
-    [_selectedPeripheral setNotifyValue:YES forCharacteristic:responseCharacteristic];
     
     CBCharacteristicWriteType type = CBCharacteristicWriteWithoutResponse;
     if (writeCharacteristic.properties & CBCharacteristicPropertyWrite) {
@@ -237,6 +374,31 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     return data;
 }
 
+- (void)preferredFilterUpdateValue:(NSData *)data {
+    
+    uint16_t responseCode = 0;
+    [data getBytes:&responseCode range:NSMakeRange(1, 2)];
+    uint16_t commandCode = CFSwapInt16HostToBig((CFSwapInt16BigToHost(responseCode) - 0x80));
+    if (commandCode == CFSwapInt16BigToHost(0x0a01)) {
+        NSData *parameterData = [self codSmartSportWatch_getResponseParameter:data];
+        UInt16 singleFrameLength = 0;
+        UInt8 frameCountEveryGroup = 0;
+        UInt8 timeoutInterval = 0;
+        [parameterData getBytes:&singleFrameLength range:NSMakeRange(2, 2)];
+        [parameterData getBytes:&frameCountEveryGroup range:NSMakeRange(4, 1)];
+        [parameterData getBytes:&timeoutInterval range:NSMakeRange(5, 1)];
+        
+        self.OTAParameters = (fileTransferParameter){CFSwapInt16BigToHost(singleFrameLength) - 2, frameCountEveryGroup, timeoutInterval};
+        [self sendNext];
+    } else if (commandCode == CFSwapInt16BigToHost(0x0a02)) {
+        [self sendNext];
+    } else if (commandCode == CFSwapInt16BigToHost(0x0a03)) {
+        NSLog(@"文件传输完成!");
+    }
+}
+
+#pragma mark - Util
+
 - (Byte *)convertNSIntegerDataToBytes:(NSInteger)original bytesLength:(NSInteger)length {
     Byte *resultBytes= malloc(sizeof(Byte)*(length));
     for (int i = 0; i < length; i++) {
@@ -274,11 +436,26 @@ NSString * const CDDeviceCodoonSportWatchResponseCharacteristicUUID = @"2A19";
     return characteristic;
 }
 
+- (NSData *)codSmartSportWatch_getResponseParameter:(NSData *)responseData {
+    UInt16 length_temp = 0;
+    [responseData getBytes:&length_temp range:NSMakeRange(3, 2)];
+    
+    UInt16 length = CFSwapInt16BigToHost(length_temp);
+    return [responseData subdataWithRange:NSMakeRange(5, length)];
+}
+
 - (NSMutableArray *)dataSource {
     if (!_dataSource) {
         _dataSource = @[].mutableCopy;
     }
     return _dataSource;
+}
+
+- (NSMutableArray *)advertisementDataSource {
+    if (!_advertisementDataSource) {
+        _advertisementDataSource = @[].mutableCopy;
+    }
+    return _advertisementDataSource;
 }
 
 @end

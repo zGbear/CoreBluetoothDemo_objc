@@ -1,0 +1,16 @@
+PODS:
+  - Bolts (1.1.4)
+
+DEPENDENCIES:
+  - Bolts (= 1.1.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bolts
+
+SPEC CHECKSUMS:
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+
+PODFILE CHECKSUM: 65cf45d0a2cbe337eefcba63378856b3d3a5ca8d
+
+COCOAPODS: 1.5.3
