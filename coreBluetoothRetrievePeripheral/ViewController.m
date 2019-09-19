@@ -179,12 +179,8 @@ typedef struct {
 }
 
 - (IBAction)retrieve:(id)sender {
-    CBPeripheral *peripheral = [_centralManager retrievePeripheralsWithIdentifiers:@[_Identity]].firstObject;
-    if (peripheral) {
-        NSLog(@"YES");
-    } else {
-        NSLog(@"NO");
-    }
+    NSArray<CBPeripheral *> * peripherals = [_centralManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:@"0AF0"]]];
+    NSLog(@"retrieve: %@", peripherals);
 }
 
 - (IBAction)getRSSI:(id)sender {
